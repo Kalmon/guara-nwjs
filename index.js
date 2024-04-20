@@ -80,11 +80,17 @@ async function main() {
                 const zip = new zl.Zip();
                 zip.addFile(`${process.cwd()}/package.json`);
                 zip.addFolder(`${process.cwd()}/package/`, "package");
+                if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
+                    zip.addFolder(`${process.cwd()}/node_modules/`, "node_modules");
+                }
                 await zip.archive(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`);
                 fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw`);
             } else {
                 fs.copyFileSync(`${process.cwd()}/package.json`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.json`);
                 fs.cpSync(`${process.cwd()}/package`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package`, { recursive: true });
+                if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
+                    fs.cpSync(`${process.cwd()}/node_modules`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/node_modules`, { recursive: true });
+                }
             }
 
             //Windows?
@@ -93,7 +99,7 @@ async function main() {
                     icon: `${process.cwd()}/${package.nw.icon}`
                 })
             }
-            
+
 
             if (fs.existsSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`)) {
                 fs.rmSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`, { recursive: true, force: true });
