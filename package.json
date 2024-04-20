@@ -11,6 +11,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "os": "^0.1.2",
+    "rcedit": "^4.0.1",
     "zip-lib": "^1.0.3"
   }
 }

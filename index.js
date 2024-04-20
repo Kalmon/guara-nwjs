@@ -3,6 +3,8 @@ let fs = require("fs");
 let os = require('os');
 var http = require('http');
 const zl = require("zip-lib");
+const rcedit = require('rcedit');
+
 var consol = [];
 const colours = {
     reset: "\x1b[0m",
@@ -67,9 +69,37 @@ async function main() {
                 consol.push(`${colours.fg.green}OK${colours.reset} -> ${package.nw.version}_${package.nw.target[cont]} -------- 100%`)
             }
 
+            //Exist folder?
+            if (fs.existsSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}`)) {
+                fs.rmSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}`, { recursive: true, force: true });
+            }
+
             //Extrair arquivos
-            zl.extract(`${os.homedir()}/gnw/${package.nw.version}_${package.nw.target[cont]}.zip`, package.nw.output);
-            fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}`,);
+            await zl.extract(`${os.homedir()}/gnw/${package.nw.version}_${package.nw.target[cont]}.zip`, package.nw.output);
+            if (package.nw.compress) {
+                const zip = new zl.Zip();
+                zip.addFile(`${process.cwd()}/package.json`);
+                zip.addFolder(`${process.cwd()}/package/`, "package");
+                await zip.archive(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`);
+                fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw`);
+            } else {
+                fs.copyFileSync(`${process.cwd()}/package.json`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.json`);
+                fs.cpSync(`${process.cwd()}/package`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package`, { recursive: true });
+            }
+
+            //Windows?
+            if ((package.nw.target[cont]).includes("win")) {
+                await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
+                    icon: `${process.cwd()}/${package.nw.icon}`
+                })
+            }
+            
+
+            if (fs.existsSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`)) {
+                fs.rmSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`, { recursive: true, force: true });
+            }
+            fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/${package.name}.exe`);
+            fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}`, `${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`);
         }
         resolv(true);
     })
