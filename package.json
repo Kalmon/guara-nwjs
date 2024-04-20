@@ -13,5 +13,8 @@
     "os": "^0.1.2",
     "rcedit": "^4.0.1",
     "zip-lib": "^1.0.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

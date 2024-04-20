@@ -100,6 +100,12 @@ async function main() {
                 })
             }
 
+            if (typeof package.nw.ignore != "undefined") {
+                package.nw.ignore.forEach(ign => {
+                    
+                })
+            }
+
 
             if (fs.existsSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`)) {
                 fs.rmSync(`${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`, { recursive: true, force: true });
