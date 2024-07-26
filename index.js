@@ -4,6 +4,7 @@ let os = require('os');
 var http = require('http');
 const zl = require("zip-lib");
 const rcedit = require('rcedit');
+var { execSync, exec } = require('child_process');
 
 var consol = [];
 const colours = {
@@ -66,7 +67,7 @@ async function main() {
                 await download(`http://dl.nwjs.io/v${package.nw.version}/nwjs-v${package.nw.version}-${package.nw.target[cont]}.zip`, `${os.homedir()}/gnw/${package.nw.version}_${package.nw.target[cont]}.zip`);
                 consol[consol.length - 1] = `${colours.fg.green}OK${colours.reset} -> ${package.nw.version}_${package.nw.target[cont]} -------- 100%`;
             } else {
-                consol.push(`${colours.fg.green}OK${colours.reset} -> ${package.nw.version}_${package.nw.target[cont]} -------- 100%`)
+                consol.push(`${colours.fg.green}OK${colours.reset} -> ${package.nw.version}_${package.nw.target[cont]} -------- 100%`);
             }
 
             //Exist folder?
@@ -85,6 +86,21 @@ async function main() {
                 }
                 await zip.archive(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`);
                 fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw`);
+
+                //Windows? setar icone
+                if ((package.nw.target[cont]).includes("win")) {
+                    await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
+                        icon: `${process.cwd()}/${package.nw.icon}`
+                    })
+                }
+
+                //Juntar NW + Package
+                consol.push(`cat ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw > ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/app.exe`);
+                consol.push(`nw+package -------- 0%`);
+                execSync(`cat ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw > ${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/app.exe`);
+                fs.unlinkSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`);
+                fs.unlinkSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw`);
+                fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/app.exe`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`);
             } else {
                 fs.copyFileSync(`${process.cwd()}/package.json`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.json`);
                 fs.cpSync(`${process.cwd()}/package`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package`, { recursive: true });
@@ -93,16 +109,9 @@ async function main() {
                 }
             }
 
-            //Windows?
-            if ((package.nw.target[cont]).includes("win")) {
-                await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
-                    icon: `${process.cwd()}/${package.nw.icon}`
-                })
-            }
-
             if (typeof package.nw.ignore != "undefined") {
                 package.nw.ignore.forEach(ign => {
-                    
+
                 })
             }
 
