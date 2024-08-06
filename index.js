@@ -80,7 +80,20 @@ async function main() {
             if (package.nw.compress) {
                 const zip = new zl.Zip();
                 zip.addFile(`${process.cwd()}/package.json`);
-                zip.addFolder(`${process.cwd()}/package/`, "package");
+                if (package.nw.ignore.length <= 0) {
+                    zip.addFolder(`${process.cwd()}/package/`, "package");
+                } else {
+                    fs.readdirSync(`${process.cwd()}/package`).forEach(file => {
+                        if (!package.nw.ignore.includes(file)){
+                            if(fs.lstatSync(`${process.cwd()}/package/${file}`).isDirectory() ){
+                                zip.addFolder(`${process.cwd()}/package/${file}`, `package/${file}`);
+                            }else{
+                                zip.addFile(`${process.cwd()}/package/${file}`, `package/${file}`);
+                            }
+                        }
+                            
+                    });
+                }
                 if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
                     zip.addFolder(`${process.cwd()}/node_modules/`, "node_modules");
                 }
@@ -103,7 +116,15 @@ async function main() {
                 fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/app.exe`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`);
             } else {
                 fs.copyFileSync(`${process.cwd()}/package.json`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.json`);
-                fs.cpSync(`${process.cwd()}/package`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package`, { recursive: true });
+                if (package.nw.ignore.length <= 0) {
+                    fs.cpSync(`${process.cwd()}/package`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package`, { recursive: true });
+                } else {
+                    fs.readdirSync(`${process.cwd()}/package/`).forEach(file => {
+                        if (!package.nw.ignore.includes(file))
+                            fs.cpSync(`${process.cwd()}/package/${file}`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package/${file}`, { recursive: true });
+                    });
+                }
+
                 if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
                     fs.cpSync(`${process.cwd()}/node_modules`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/node_modules`, { recursive: true });
                 }
