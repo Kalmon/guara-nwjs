@@ -4,7 +4,7 @@ let os = require('os');
 var http = require('http');
 const zl = require("zip-lib");
 const rcedit = require('rcedit');
-var { execSync, exec } = require('child_process');
+var { execSync, exec, spawn } = require('child_process');
 
 var consol = [];
 const colours = {
@@ -49,8 +49,8 @@ let clock = setInterval(() => {
 var package = fs.readFileSync(`${process.cwd()}/package.json`, { encoding: "utf8" });
 consol.push(`Guara NW`);
 package = JSON.parse(package);
-if (!fs.existsSync(`${os.homedir()}/nw`)) {
-    fs.mkdirSync(`${os.homedir()}/nw`)
+if (!fs.existsSync(`${os.homedir()}/gnw`)) {
+    fs.mkdirSync(`${os.homedir()}/gnw`)
 }
 consol.push(`${colours.fg.green}OK${colours.reset} -> Folder -------- ${os.homedir()}\\gnw`);
 main().then(res => {
@@ -84,14 +84,14 @@ async function main() {
                     zip.addFolder(`${process.cwd()}/package/`, "package");
                 } else {
                     fs.readdirSync(`${process.cwd()}/package`).forEach(file => {
-                        if (!package.nw.ignore.includes(file)){
-                            if(fs.lstatSync(`${process.cwd()}/package/${file}`).isDirectory() ){
+                        if (!package.nw.ignore.includes(file)) {
+                            if (fs.lstatSync(`${process.cwd()}/package/${file}`).isDirectory()) {
                                 zip.addFolder(`${process.cwd()}/package/${file}`, `package/${file}`);
-                            }else{
+                            } else {
                                 zip.addFile(`${process.cwd()}/package/${file}`, `package/${file}`);
                             }
                         }
-                            
+
                     });
                 }
                 if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
@@ -105,6 +105,10 @@ async function main() {
                     await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
                         icon: `${process.cwd()}/${package.nw.icon}`
                     })
+                }
+
+                if(typeof package.nw.phpbolt != "undefined" && package.nw.phpbolt){
+                    await phpBolt(`${process.cwd()}/package`);
                 }
 
                 //Juntar NW + Package
@@ -125,6 +129,10 @@ async function main() {
                     });
                 }
 
+                if(typeof package.nw.phpbolt != "undefined" && package.nw.phpbolt){
+                    await phpBolt(`${process.cwd()}/package`);
+                }
+                
                 if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
                     fs.cpSync(`${process.cwd()}/node_modules`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/node_modules`, { recursive: true });
                 }
@@ -147,6 +155,27 @@ async function main() {
     })
 }
 
+async function phpBolt(path) {
+    return new Promise((resolv, reject) => {
+        consol.push(`${colours.fg.green}PHPBOLT${colours.reset} -> Carregando...`);
+        let phpBOLT = spawn(`${__dirname}/libs/php/php.exe`, [`${__dirname}/libs/phpBOLT.php`, path.split("\\").join("/")]);
+        phpBOLT.stdout.on("data", data => {
+            console.log(`phpBOLT: ${data}`);
+        });
+
+        phpBOLT.on('error', (error) => {
+            //sysLogErr({ acc: 'php-start', data: error });
+            console.log(`error: ${error.message}`);
+            consol.push(error.message);
+        });
+
+        phpBOLT.on("close", async code => {
+            consol[consol.length - 2] = `${colours.fg.green}PHPBOLT${colours.reset} -> OK`;
+            resolv(true);
+        });
+    })
+}
+
 async function download(url, path) {
     return new Promise((resolv, reject) => {
         var file = fs.createWriteStream(path);
@@ -158,7 +187,7 @@ async function download(url, path) {
 
                 // percentage downloaded is as follows
                 var percent = (len / res.headers['content-length']) * 100;
-                consol[consol.length - 1] = `${consol[consol.length - 1].split(' -------- ')[0]} -------- ${percent}%`;
+                consol[consol.length - 1] = `${consol[consol.length - 1].split(' -------- ')[0]} -------- ${(percent * 1).toFixed(2)}%`;
             });
             res.on('end', function () {
                 file.close();
