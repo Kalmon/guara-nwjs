@@ -5,7 +5,7 @@
  * encrypted : Output folder
  */
 
-$src = str_replace("/","\\",$argv[1]);
+$src = str_replace("/", "\\", $argv[1]);
 $php_blot_key = "GuaraNWJS";
 
 
@@ -43,7 +43,7 @@ foreach ($rec as $file) {
     }
 
     $contents = file_get_contents($filePath);
-    $preppand = '<?php bolt_decrypt( __FILE__ , "'.$php_blot_key.'"); return 0;
+    $preppand = '<?php bolt_decrypt( __FILE__ , "' . $php_blot_key . '"); return 0;
     ##!!!##';
     $re = '/\<\?php/m';
     preg_match($re, $contents, $matches);
@@ -65,6 +65,3 @@ foreach ($rec as $file) {
 $out_str = substr_replace($src, '', 0, 4);
 $file_location = __DIR__ . "/encrypted/" . $out_str;
 echo "Successfully Encrypted... Please check in <b>" . $file_location . "</a></b> folder.";
-
-
-

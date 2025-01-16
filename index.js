@@ -77,6 +77,13 @@ async function main() {
 
             //Extrair arquivos
             await zl.extract(`${os.homedir()}/gnw/${package.nw.version}_${package.nw.target[cont]}.zip`, package.nw.output);
+            //Windows? setar icone
+            if ((package.nw.target[cont]).includes("win")) {
+                await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
+                    icon: `${process.cwd()}/${package.nw.icon}`
+                })
+            }
+
             if (package.nw.compress) {
                 const zip = new zl.Zip();
                 zip.addFile(`${process.cwd()}/package.json`);
@@ -100,15 +107,8 @@ async function main() {
                 await zip.archive(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`);
                 fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.zip`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/package.nw`);
 
-                //Windows? setar icone
-                if ((package.nw.target[cont]).includes("win")) {
-                    await rcedit(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/nw.exe`, {
-                        icon: `${process.cwd()}/${package.nw.icon}`
-                    })
-                }
-
-                if(typeof package.nw.phpbolt != "undefined" && package.nw.phpbolt){
-                    await phpBolt(`${process.cwd()}/package`);
+                if (typeof package.nw.php != "undefined" && package.nw.php) {
+                    await protectPHP(`${process.cwd()}/package`);
                 }
 
                 //Juntar NW + Package
@@ -129,10 +129,10 @@ async function main() {
                     });
                 }
 
-                if(typeof package.nw.phpbolt != "undefined" && package.nw.phpbolt){
-                    await phpBolt(`${process.cwd()}/package`);
+                if (typeof package.nw.php != "undefined" && package.nw.php) {
+                    await protectPHP(`${process.cwd()}/package`);
                 }
-                
+
                 if (fs.existsSync(`${process.cwd()}/node_modules/`)) {
                     fs.cpSync(`${process.cwd()}/node_modules`, `${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}/node_modules`, { recursive: true });
                 }
@@ -152,27 +152,6 @@ async function main() {
             fs.renameSync(`${package.nw.output}/nwjs-v${package.nw.version}-${package.nw.target[cont]}`, `${package.nw.output}/${package.name.split(" ").join("-")}-v${package.version}-${package.nw.target[cont]}`);
         }
         resolv(true);
-    })
-}
-
-async function phpBolt(path) {
-    return new Promise((resolv, reject) => {
-        consol.push(`${colours.fg.green}PHPBOLT${colours.reset} -> Carregando...`);
-        let phpBOLT = spawn(`${__dirname}/libs/php/php.exe`, [`${__dirname}/libs/phpBOLT.php`, path.split("\\").join("/")]);
-        phpBOLT.stdout.on("data", data => {
-            console.log(`phpBOLT: ${data}`);
-        });
-
-        phpBOLT.on('error', (error) => {
-            //sysLogErr({ acc: 'php-start', data: error });
-            console.log(`error: ${error.message}`);
-            consol.push(error.message);
-        });
-
-        phpBOLT.on("close", async code => {
-            consol[consol.length - 2] = `${colours.fg.green}PHPBOLT${colours.reset} -> OK`;
-            resolv(true);
-        });
     })
 }
 
@@ -197,6 +176,57 @@ async function download(url, path) {
                 // the file is done downloading
                 resolv(true)
             });
+        });
+    })
+}
+
+
+
+// OFUSCAÇÃO DO PHP
+async function protectPHP(path) {
+    consol.push(`${colours.fg.green}PHP Protect${colours.reset} -> Iniciado...`);
+    listFiles(path).then(async filesPHP => {
+        consol.push(`${colours.fg.green}PHP Protect${colours.reset} -> Iniciado...`);
+        for (let cont = 0; cont < filesPHP.length; cont++) {
+            await phpOfusc(filesPHP[cont]);
+            consol[consol.length - 1] = `${colours.fg.green}PHP Protect${colours.reset} -> ${consol.length}/${cont} `;
+        }
+        consol.push(`${colours.fg.green}PHP Protect${colours.reset} -> Finalizado.`);
+    })
+}
+async function listFiles(path) {
+    return new Promise(async (resolv, reject) => {
+        let dirFiles = fs.readdirSync(path);
+        let filesPHP = new Array();
+        for (let cont = 0; cont < dirFiles.length; cont++) {
+            if (fs.lstatSync(`${path}\\${dirFiles[cont]}`).isDirectory()) {
+                filesPHP = filesPHP.concat(await listFiles(`${path}\\${dirFiles[cont]}`));
+            } else {
+                if (dirFiles[cont].includes(".php") && !`${path}\\${dirFiles[cont]}`.includes("vendor")) {
+                    filesPHP.push(`${path}\\${dirFiles[cont]}`);
+                }
+            }
+        }
+        resolv(filesPHP);
+    })
+}
+async function phpOfusc(pathFile) {
+    return new Promise((resolv, reject) => {
+        let PHPOfusc = spawn(`${__dirname}/libs/php/php.exe`, [`${__dirname}/libs/yakpro-po/yakpro-po.php`, pathFile.split("\\").join("/"), "-o", "./temp-yakpro-po.php"]);
+        PHPOfusc.stdout.on("data", data => {
+            consol.push(`PHPOfusc: ${data}`);
+        });
+
+        PHPOfusc.on('error', (error) => {
+            //sysLogErr({ acc: 'php-start', data: error });
+            consol.push(`error: ${error.message}`);
+        });
+
+        PHPOfusc.on("close", async code => {
+            fs.unlinkSync(pathFile.split("\\").join("/"));
+            fs.copyFileSync("./temp-yakpro-po.php", pathFile.split("\\").join("/"));
+            fs.unlinkSync("./temp-yakpro-po.php");
+            resolv(true);
         });
     })
 }

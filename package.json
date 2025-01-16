@@ -12,6 +12,7 @@
     "zip-lib": "^1.0.3"
   },
   "bin": {
-    "gnw": "index.js"
+    "gnw": "index.js",
+    "gphp": "phpbolt.js"
   }
 }
