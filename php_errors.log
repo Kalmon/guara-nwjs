@@ -1,0 +1,131 @@
+[17-Jan-2025 01:10:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:55
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 55
+[17-Jan-2025 01:11:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:55
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 55
+[17-Jan-2025 01:11:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:54
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 54
+[17-Jan-2025 01:11:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:54
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 54
+[17-Jan-2025 01:12:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:55
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 55
+[17-Jan-2025 01:14:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:53
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 53
+[17-Jan-2025 01:15:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:52
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 52
+[17-Jan-2025 01:16:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:55
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 55
+[17-Jan-2025 01:18:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:55
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 55
+[17-Jan-2025 01:19:54 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:19:54 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:19:54 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:19:54 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:19:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:46
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 46
+[17-Jan-2025 01:21:04 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 31
+[17-Jan-2025 01:21:04 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 31
+[17-Jan-2025 01:21:04 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 31
+[17-Jan-2025 01:21:04 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 31
+[17-Jan-2025 01:21:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:45
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 45
+[17-Jan-2025 01:22:00 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:22:00 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:22:00 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:22:00 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:22:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:46
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 46
+[17-Jan-2025 01:23:09 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:23:09 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:23:09 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:23:09 UTC] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in E:\Projetos\gnw\libs\phpBolt.php on line 32
+[17-Jan-2025 01:23:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:46
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 46
+[17-Jan-2025 01:23:20 UTC] PHP Warning:  file_get_contents(C:\GNW\BuildWEB\.): failed to open stream: Permission denied in E:\Projetos\gnw\libs\phpBolt.php on line 29
+[17-Jan-2025 01:23:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:39
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 39
+[17-Jan-2025 01:26:49 UTC] PHP Fatal error:  Uncaught UnexpectedValueException: RecursiveDirectoryIterator::__construct(src/noti): O sistema não pode encontrar o caminho especificado. (code: 3) in E:\Projetos\gnw\phpBolt\encryption.php:22
+Stack trace:
+#0 E:\Projetos\gnw\phpBolt\encryption.php(22): RecursiveDirectoryIterator->__construct()
+#1 {main}
+  thrown in E:\Projetos\gnw\phpBolt\encryption.php on line 22
+[17-Jan-2025 01:33:25 UTC] PHP Notice:  Only variables should be passed by reference in E:\Projetos\gnw\libs\phpBolt.php on line 16
+[17-Jan-2025 01:33:38 UTC] PHP Notice:  Only variables should be passed by reference in E:\Projetos\gnw\libs\phpBolt.php on line 16
+[17-Jan-2025 01:34:10 UTC] PHP Notice:  Only variables should be passed by reference in E:\Projetos\gnw\libs\phpBolt.php on line 14
+[17-Jan-2025 01:34:23 UTC] PHP Notice:  Only variables should be passed by reference in E:\Projetos\gnw\libs\phpBolt.php on line 15
+[17-Jan-2025 01:44:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function isDir() on string in E:\Projetos\gnw\libs\phpBolt.php:25
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 25
+[17-Jan-2025 01:45:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function isDir() on string in E:\Projetos\gnw\libs\phpBolt.php:25
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 25
+[17-Jan-2025 01:48:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:48:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:49:30 UTC] PHP Parse error:  syntax error, unexpected ')' in E:\Projetos\gnw\libs\phpBolt.php on line 39
+[17-Jan-2025 01:49:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:50:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:50:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:51:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:51:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:36
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 36
+[17-Jan-2025 01:52:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:37
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 37
+[17-Jan-2025 01:53:25 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_bolt' (tried: ext\php_bolt (Não foi possível encontrar o módulo especificado.), ext\php_php_bolt.dll (Não foi possível encontrar o módulo especificado.)) in Unknown on line 0
+[17-Jan-2025 01:53:35 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_bolt2' (tried: ext\php_bolt2 (Não foi possível encontrar o módulo especificado.), ext\php_php_bolt2.dll (Não foi possível encontrar o módulo especificado.)) in Unknown on line 0
+[17-Jan-2025 01:53:47 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_bolt.dll' (tried: ext\php_bolt.dll (Não foi possível encontrar o módulo especificado.), ext\php_php_bolt.dll.dll (Não foi possível encontrar o módulo especificado.)) in Unknown on line 0
+[17-Jan-2025 01:53:51 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_bolt.dll' (tried: ext\php_bolt.dll (Não foi possível encontrar o módulo especificado.), ext\php_php_bolt.dll.dll (Não foi possível encontrar o módulo especificado.)) in Unknown on line 0
+[17-Jan-2025 01:53:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function bolt_encrypt() in E:\Projetos\gnw\libs\phpBolt.php:37
+Stack trace:
+#0 {main}
+  thrown in E:\Projetos\gnw\libs\phpBolt.php on line 37

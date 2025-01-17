@@ -1,18 +1,28 @@
 {
   "name": "gnw",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC",
+  "version": "0.0.7",
+  "description": "Guara Dev NWJS",
+  "main": "gnw.js",
+  "bin": {
+    "gnw": "./gnw.js",
+    "gphp": "./gphp.js"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "header",
+    "file"
+  ],
+  "author": {
+    "name": "Guara DEV",
+    "email": "admin@guaradev.com"
+  },
+  "license": "MIT",
   "dependencies": {
     "fs": "^0.0.1-security",
     "os": "^0.1.2",
     "rcedit": "^4.0.1",
     "zip-lib": "^1.0.3"
-  },
-  "bin": {
-    "gnw": "index.js",
-    "gphp": "phpbolt.js"
   }
 }
